@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IsEmail, Min, Max, IsNotEmpty } from 'class-validator';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  JoinTable,
+} from 'typeorm';
+import { Cuestionario } from './cuestionarios.entity';
 
 @Entity({ name: 'contactos' })
 export class Contacto {
@@ -20,4 +27,11 @@ export class Contacto {
 
   @Column({ default: false })
   visto: boolean;
+
+  @Column()
+  cuestionarioId: number;
+
+  @OneToOne(type => Cuestionario)
+  @JoinColumn()
+  cuestionario: Cuestionario;
 }

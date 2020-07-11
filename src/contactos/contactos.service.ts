@@ -3,29 +3,47 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Contacto } from './contactos.entity';
 import { CreateContactoDto } from './dto/create-contacto.dto';
+import { Cuestionario } from './cuestionarios.entity';
 
 @Injectable()
 export class ContactosService {
   constructor(
     @InjectRepository(Contacto)
     private contactosRepository: Repository<Contacto>,
+    @InjectRepository(Cuestionario)
+    private cuestionariosRepository: Repository<Cuestionario>,
   ) {}
 
   findAll(): Promise<Contacto[]> {
-    return this.contactosRepository.find();
+    return this.contactosRepository.find({ order: { fechaCreacion: 'DESC' } });
   }
 
-  findOne(id: string): Promise<Contacto> {
-    return this.contactosRepository.findOne(id);
+  async findOne(id: string): Promise<Contacto> {
+    const contacto = await this.contactosRepository.findOne({
+      where: { id: id },
+      relations: ['cuestionario'],
+    });
+
+    return contacto;
   }
 
-  create(createUserDto: CreateContactoDto): Promise<Contacto> {
+  async create(createUserDto: CreateContactoDto): Promise<Contacto> {
+    const cuestionario = new Cuestionario();
+    cuestionario.edad = createUserDto.edad;
+    cuestionario.genero = createUserDto.genero;
+    cuestionario.orientacionSexual = createUserDto.orientacionSexual;
+    cuestionario.situacionSentimental = createUserDto.situacionSentimental;
+    const savedCuestionario = await this.cuestionariosRepository.save(
+      cuestionario,
+    );
+
     const contacto = new Contacto();
     contacto.nombre = createUserDto.nombre;
     contacto.correo = createUserDto.correo;
     contacto.telefono = createUserDto.telefono;
     contacto.fechaCreacion = new Date();
     contacto.visto = false;
+    contacto.cuestionario = savedCuestionario;
 
     return this.contactosRepository.save(contacto);
   }

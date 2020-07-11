@@ -18,4 +18,16 @@ export class CreateContactoDto {
   @MaxLength(15, { message: 'El tel no debe ser mayor a 15 digitos' })
   @MinLength(9, { message: 'El tel no debe se menir de 9 digitos' })
   telefono: string;
+
+  @IsNotEmpty()
+  edad: number;
+
+  @IsNotEmpty()
+  genero: string;
+
+  @IsNotEmpty()
+  orientacionSexual: string;
+
+  @IsNotEmpty()
+  situacionSentimental: string;
 }

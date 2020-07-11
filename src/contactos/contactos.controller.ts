@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
 import { ContactosService } from './contactos.service';
 import { CreateContactoDto } from './dto/create-contacto.dto';
 import { Contacto } from './contactos.entity';
+import { ContactoDetailDto } from './dto/contactoDetail.dto';
 
 @Controller('contactos')
 export class ContactosController {
