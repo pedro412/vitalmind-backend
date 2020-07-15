@@ -15,7 +15,6 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param() params): string {
-    console.log(params.id);
     return `user id: ${params.id}`;
   }
 
