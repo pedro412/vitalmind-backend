@@ -9,6 +9,9 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ContactosModule,
+    AuthModule,
+    UsersModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -20,9 +23,6 @@ import { UsersModule } from './users/users.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ContactosModule,
-    AuthModule,
-    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
