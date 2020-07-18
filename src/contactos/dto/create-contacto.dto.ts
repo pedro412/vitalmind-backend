@@ -16,18 +16,46 @@ export class CreateContactoDto {
 
   @IsOptional()
   @MaxLength(15, { message: 'El tel no debe ser mayor a 15 digitos' })
-  @MinLength(9, { message: 'El tel no debe se menir de 9 digitos' })
   telefono: string;
 
   @IsNotEmpty()
-  edad: number;
+  genero: string;
 
   @IsNotEmpty()
-  genero: string;
+  edad: number;
 
   @IsNotEmpty()
   orientacionSexual: string;
 
   @IsNotEmpty()
   situacionSentimental: string;
+
+  @IsNotEmpty()
+  hasTomadoTerapia: boolean;
+
+  @IsNotEmpty()
+  saludFisica: string;
+
+  sentimientos: string;
+
+  @IsNotEmpty()
+  ganasDeHacerCosas: string;
+
+  @IsNotEmpty()
+  vinculoEmocional: string;
+
+  @IsNotEmpty()
+  meCuestaDefinirme: string;
+
+  @IsNotEmpty()
+  heSentidoAnsiedad: string;
+
+  @IsNotEmpty()
+  meCuestaPonerLimites: string;
+
+  @IsNotEmpty()
+  problemasParaDormir: string;
+
+  @IsNotEmpty()
+  estado: string;
 }

@@ -33,6 +33,15 @@ export class ContactosService {
     cuestionario.genero = createUserDto.genero;
     cuestionario.orientacionSexual = createUserDto.orientacionSexual;
     cuestionario.situacionSentimental = createUserDto.situacionSentimental;
+    cuestionario.hasTomadoTerapia = createUserDto.hasTomadoTerapia;
+    cuestionario.saludFisica = createUserDto.saludFisica;
+    cuestionario.sentimientos = createUserDto.sentimientos;
+    cuestionario.ganasDeHacerCosas = createUserDto.ganasDeHacerCosas;
+    cuestionario.vinculoEmocional = createUserDto.vinculoEmocional;
+    cuestionario.meCuestaDefinirme = createUserDto.meCuestaDefinirme;
+    cuestionario.heSentidoAnsiedad = createUserDto.heSentidoAnsiedad;
+    cuestionario.problemasParaDormir = createUserDto.problemasParaDormir;
+    cuestionario.estado = createUserDto.estado;
     const savedCuestionario = await this.cuestionariosRepository.save(
       cuestionario,
     );

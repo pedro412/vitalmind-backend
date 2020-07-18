@@ -27,17 +27,20 @@ export class ContactosController {
     return this.contactosService.findAll();
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Contacto> {
     return this.contactosService.findOne(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('seen/:id')
   async seen(@Param('id') id: string): Promise<string> {
     await this.contactosService.seen(id);
     return 'Updated';
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
     return this.contactosService.remove(id);
