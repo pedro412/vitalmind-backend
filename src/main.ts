@@ -10,6 +10,8 @@ async function bootstrap() {
   app.use(helmet());
   app.useGlobalPipes(new ValidationPipe());
   app.use(compression());
-  await app.listen(3000);
+  console.log('app iniciada!');
+
+  await app.listen(process.env.PORT);
 }
 bootstrap();
